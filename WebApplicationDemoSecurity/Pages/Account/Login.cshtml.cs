@@ -24,7 +24,7 @@ namespace WebApplicationDemoSecurity.Pages.Account
             // Validate Credential
             if (Credential.UserName == "admin" && Credential.Password == "password")
             {
-                //Creating the security context
+                // 4. Creating the security context for this user and give him his claims
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, " admin "),
@@ -34,9 +34,11 @@ namespace WebApplicationDemoSecurity.Pages.Account
                     new Claim("Manager", "true"),
                     new Claim("EmploymentDate", "2021-05-01")
                 };
+                // 5. Create the identity for this user
                 var identity = new ClaimsIdentity(claims, "MyCookieAuth");
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
-                
+
+                // 6. Will set the cookie in the browser
                 await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
 
                 return RedirectToPage("/Index");

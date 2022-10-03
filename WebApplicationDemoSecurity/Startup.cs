@@ -25,12 +25,17 @@ namespace WebApplicationDemoSecurity
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // 1. Add Authentication Cookie
             services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", options =>
             {
                 options.Cookie.Name = "MyCookieAuth";
+                
+                // Set the path to Login & AccessDenied pages
                 options.LoginPath = "/Account/Login";
                 options.AccessDeniedPath = "/Account/AccessDenied";
             });
+
+            // 2. Add the Authorization Policies 
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("MustBelongToHRDepartment",
@@ -70,6 +75,7 @@ namespace WebApplicationDemoSecurity
 
             app.UseRouting();
 
+            // 3. Add Authentication middleware (So that AddAuthentication in ConfigureServices will be used)
             app.UseAuthentication();
             app.UseAuthorization();
 
