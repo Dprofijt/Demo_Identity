@@ -32,7 +32,8 @@ namespace WebApplicationDemoSecurity.Pages.Account
                     new Claim("Department", "HR"), 
                     new Claim("Admin", "true"),
                     new Claim("Manager", "true"),
-                    new Claim("EmploymentDate", "2021-05-01")
+                    // 8c. add claim for custom policy
+                    new Claim("EmploymentDate", "2022-10-01")
                 };
                 // 5. Create the identity for this user
                 var identity = new ClaimsIdentity(claims, "MyCookieAuth");

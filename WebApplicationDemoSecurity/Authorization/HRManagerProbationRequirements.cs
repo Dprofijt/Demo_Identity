@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 
 namespace WebApplicationDemoSecurity.Authorization
 {
+    // 8a. add requirment for the custom policy
     public class HRManagerProbationRequirement : IAuthorizationRequirement
     {
         public HRManagerProbationRequirement(int probationMonths)

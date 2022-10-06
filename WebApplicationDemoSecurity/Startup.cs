@@ -47,6 +47,7 @@ namespace WebApplicationDemoSecurity
                     policy => policy
                         .RequireClaim("Department", "HR")
                         .RequireClaim("Manager")
+                        //8b. add requirment to policy
                         .Requirements.Add(new HRManagerProbationRequirement(3))
                     );
 
